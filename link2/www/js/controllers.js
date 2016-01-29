@@ -74,6 +74,10 @@ angular.module('link2.controllers', ['link2.services', 'ngOpenFB'])
           alert('An error occurred while sharing this session on Facebook');
         });
     };
+
+    $scope.$on('$ionicView.enter', function( scopes, states ) {
+      console.log('$ionicView.enter', states.title, states.transition, states.stateName);
+    });
   })
   .controller('ProfileCtrl', function ($scope, ngFB) {
     ngFB.api({

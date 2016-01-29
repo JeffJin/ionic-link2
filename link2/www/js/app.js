@@ -20,10 +20,22 @@ angular.module('link2', ['ionic','ionic.service.core', 'link2.controllers', 'ngO
         // org.apache.cordova.statusbar required
         StatusBar.styleDefault();
       }
+
+      //push notification setup
+      var push = new Ionic.Push({
+        "debug": true
+      });
+
+      push.register(function(token) {
+        console.log("Device token:",token.token);
+      });
     });
   })
 
-  .config(function($stateProvider, $urlRouterProvider) {
+  .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+    //Disable cache globally
+    //$ionicConfigProvider.views.maxCache(0);
+
     $stateProvider
 
       .state('app', {
