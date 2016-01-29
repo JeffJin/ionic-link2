@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'ngOpenFB'])
+angular.module('link2', ['ionic','ionic.service.core', 'link2.controllers', 'ngOpenFB'])
   .run(function ($ionicPlatform, ngFB) {
     $ionicPlatform.ready(function() {
       ngFB.init({appId: '173860239647801'});

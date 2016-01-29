@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
+angular.module('link2.controllers', ['link2.services', 'ngOpenFB'])
   .controller('AppCtrl', function ($scope, $ionicModal, $timeout, ngFB) {
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.

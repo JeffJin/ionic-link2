@@ -1,4 +1,4 @@
-Ionic App Base
+Ionic Link2 App Base
 =====================
 
 A starting project for Ionic that optionally supports using custom SCSS.

@@ -2,7 +2,7 @@
 <widget id="io.eworks.link2ionic" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Ionic-Link2</name>
   <description>
-        An Ionic Framework and Cordova project.
+        Link2 Ionic Application
     </description>
   <author email="jeff@jeffjin.com" href="http://eworks.io/">
       Jeff Jin

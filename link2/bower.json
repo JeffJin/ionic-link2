@@ -1,0 +1,8 @@
+{
+  "name": "Link2",
+  "private": "true",
+  "devDependencies": {
+    "ionic": "driftyco/ionic-bower#1.2.4",
+    "ionic-platform-web-client": "~0.2.1"
+  }
+}
