@@ -1,14 +1,23 @@
 <ion-view view-title="Browse">
-  <ion-header-bar align-title="left" class="bar-subheader bar-positive">
+  <ion-header-bar align-title="center" class="bar-subheader bar-positive">
     <div class="buttons">
-      <button class="button" ng-click="doSomething()">Left Button</button>
+      <button class="button" ng-click="">Rotate Left</button>
     </div>
-    <h1 class="title">Title!</h1>
+    <h1 class="title">Creative Cloud</h1>
     <div class="buttons">
-      <button class="button">Right Button</button>
+      <button class="button">Rotate Right</button>
     </div>
   </ion-header-bar>
   <ion-content>
-    Browse
+    <div style="background-color: #4a148c; width:200px; height: 400px;position:absolute;left:25%;top:50px;"></div>
   </ion-content>
+  <ion-footer-bar align-title="center" class="bar-assertive">
+    <div class="buttons">
+      <button class="button">Left Button</button>
+    </div>
+    <h1 class="title">Warning</h1>
+    <div class="buttons" ng-click="">
+      <button class="button">Right Button</button>
+    </div>
+  </ion-footer-bar>
 </ion-view>
