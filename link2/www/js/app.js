@@ -1,4 +1,3 @@
-// Ionic Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
@@ -58,7 +57,8 @@ angular.module('link2', ['ionic','ionic.service.core', 'link2.controllers', 'ngO
         url: '/browse',
         views: {
           'menuContent': {
-            templateUrl: 'templates/browse.html'
+            templateUrl: 'templates/browse.html',
+            controller: 'BrowseCtrl'
           }
         }
       })
