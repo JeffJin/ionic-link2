@@ -1,9 +1,4 @@
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.controllers' is found in controllers.js
-angular.module('link2', ['ionic','ionic.service.core', 'link2.controllers', 'ngCordova', 'ngOpenFB'])
+angular.module('link2')
   .run(function ($ionicPlatform, ngFB) {
 
     $ionicPlatform.ready(function() {
@@ -25,11 +20,11 @@ angular.module('link2', ['ionic','ionic.service.core', 'link2.controllers', 'ngC
 
       //push notification setup
       var push = new Ionic.Push({
-        "debug": true
+        'debug': true
       });
 
       push.register(function(token) {
-        console.log("Device token:",token.token);
+        console.log('Device token:',token.token);
       });
     });
   })
@@ -41,17 +36,27 @@ angular.module('link2', ['ionic','ionic.service.core', 'link2.controllers', 'ngC
     $stateProvider
 
       .state('app', {
-        url: '/app',
         abstract: true,
-        templateUrl: 'templates/menu.html',
+        templateUrl: 'js/sections/main/menu.html',
         controller: 'AppCtrl'
+      })
+
+      .state('app.login', {
+        url: '/login',
+        views: {
+          'menuContent': {
+            templateUrl: 'js/sections/login/login.html',
+            controller: 'LoginCtrl'
+          }
+        }
       })
 
       .state('app.search', {
         url: '/search',
         views: {
           'menuContent': {
-            templateUrl: 'templates/search.html'
+            templateUrl: 'js/sections/search/search.html',
+            controller: 'SearchCtrl'
           }
         }
       })
@@ -60,40 +65,40 @@ angular.module('link2', ['ionic','ionic.service.core', 'link2.controllers', 'ngC
         url: '/browse',
         views: {
           'menuContent': {
-            templateUrl: 'templates/browse.html',
+            templateUrl: 'js/sections/browse/browse.html',
             controller: 'BrowseCtrl'
           }
         }
       })
       .state('app.sessions', {
-        url: "/sessions",
+        url: '/sessions',
         views: {
           'menuContent': {
-            templateUrl: "templates/sessions.html",
+            templateUrl: 'js/sections/sessions/sessions.html',
             controller: 'SessionsCtrl'
           }
         }
       })
 
       .state('app.session', {
-        url: "/sessions/:sessionId",
+        url: '/sessions/:sessionId',
         views: {
           'menuContent': {
-            templateUrl: "templates/session.html",
+            templateUrl: 'js/sections/session-details/session.html',
             controller: 'SessionCtrl'
           }
         }
       })
 
       .state('app.profile', {
-        url: "/profile",
+        url: '/profile',
         views: {
           'menuContent': {
-            templateUrl: "templates/profile.html",
-            controller: "ProfileCtrl"
+            templateUrl: 'js/sections/profile/profile.html',
+            controller: 'ProfileCtrl'
           }
         }
       });
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/sessions');
+    $urlRouterProvider.otherwise('/login');
   });

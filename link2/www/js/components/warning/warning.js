@@ -1,4 +1,4 @@
-angular.module('link2.components', ['ionic'])
+angular.module('link2.components')
   .directive('link2Warning', function ($ionicPopover) {
     return {
       restrict : 'A',
