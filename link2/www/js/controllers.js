@@ -1,5 +1,5 @@
 angular.module('link2.controllers', ['link2.services', 'link2.components', 'ngOpenFB', 'ionic'])
-  .controller('AppCtrl', function ($scope, $ionicModal, $timeout, ngFB) {
+  .controller('AppCtrl', function ($scope, $ionicModal, $timeout, $cordovaTouchID, $state, ngFB) {
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
     // To listen for when this page is active (for example, to refresh data),
@@ -29,15 +29,23 @@ angular.module('link2.controllers', ['link2.services', 'link2.components', 'ngOp
 
     // Perform the login action when the user submits the login form
     $scope.doLogin = function () {
-      console.log('Doing login', $scope.loginData);
 
-      // Simulate a login delay. Remove this and replace with your login
-      // code if using a login system
-      $timeout(function () {
-        $scope.closeLogin();
-      }, 1000);
+      //touch id login
+      $cordovaTouchID.checkSupport().then(function() {
+        $cordovaTouchID.authenticate("You must authenticate").then(function() {
+          alert("The authentication was successful");
+          $scope.closeLogin();
+          $state.go("app.sessions");
+
+        }, function(error) {
+          console.log(JSON.stringify(error));
+        });
+      }, function(error) {
+        console.log(JSON.stringify(error));
+      });
     };
 
+    //facebook login
     $scope.fbLogin = function () {
       ngFB.login({scope: 'email,public_profile'}).then(
         function (response) {
@@ -49,6 +57,7 @@ angular.module('link2.controllers', ['link2.services', 'link2.components', 'ngOp
           }
         });
     };
+
   })
 
   .controller('SessionsCtrl', function($scope, Session) {
