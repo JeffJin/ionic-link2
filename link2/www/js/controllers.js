@@ -1,5 +1,5 @@
 angular.module('link2.controllers', ['link2.services', 'link2.components', 'ngOpenFB', 'ionic'])
-  .controller('AppCtrl', function ($scope, $ionicModal, $timeout, $cordovaTouchID, $state, ngFB) {
+  .controller('AppCtrl', function ($scope, $ionicModal, $timeout, $cordovaTouchID, $state, $ionicPopover, ngFB) {
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
     // To listen for when this page is active (for example, to refresh data),
@@ -28,14 +28,13 @@ angular.module('link2.controllers', ['link2.services', 'link2.components', 'ngOp
     };
 
     // Perform the login action when the user submits the login form
-    $scope.doLogin = function () {
+    $scope.doLogin = function ($event) {
 
       //touch id login
       $cordovaTouchID.checkSupport().then(function() {
         $cordovaTouchID.authenticate("You must authenticate").then(function() {
           alert("The authentication was successful");
-          $scope.closeLogin();
-          $state.go("app.sessions");
+          $scope.openSuccessPopover($event);
 
         }, function(error) {
           console.log(JSON.stringify(error));
@@ -43,6 +42,26 @@ angular.module('link2.controllers', ['link2.services', 'link2.components', 'ngOp
       }, function(error) {
         console.log(JSON.stringify(error));
       });
+    };
+
+
+    $ionicPopover.fromTemplateUrl('js/components/login/success.html', {
+      scope: $scope
+    }).then(function(popover) {
+      $scope.popover = popover;
+    });
+
+    $scope.goToSessions = function(){
+      $scope.closeSuccessPopover();
+      $scope.closeLogin();
+      $state.go("app.sessions");
+    };
+
+    $scope.openSuccessPopover = function($event) {
+      $scope.popover.show($event);
+    };
+    $scope.closeSuccessPopover = function() {
+      $scope.popover.hide();
     };
 
     //facebook login
