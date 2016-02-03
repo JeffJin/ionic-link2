@@ -1,6 +1,10 @@
 angular.module('link2.controllers')
-  .controller('SessionCtrl', function ($scope, $stateParams, Session, ngFB) {
-    $scope.session = Session.get({sessionId: $stateParams.sessionId});
+  .controller('SessionCtrl', function ($scope, $stateParams, SessionService, ngFB) {
+    function init(){
+      SessionService.getSessionDetails($stateParams.sessionId).then(function(result){
+        $scope.session = result.data;
+      });
+    }
 
     $scope.share = function (event) {
       ngFB.api({
@@ -22,4 +26,6 @@ angular.module('link2.controllers')
     $scope.$on('$ionicView.enter', function( scopes, states ) {
       console.log('$ionicView.enter', states.title, states.transition, states.stateName);
     });
+
+    init();
   });

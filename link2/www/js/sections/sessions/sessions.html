@@ -1,5 +1,9 @@
 <ion-view view-title="Sessions">
   <ion-content>
+    <ion-refresher
+        pulling-text="Pull to refresh..."
+        on-refresh="reloadSessions()">
+    </ion-refresher>
     <ion-list>
       <ion-item ng-repeat="session in sessions"
                 href="#/sessions/{{session.id}}">{{session.title}}</ion-item>
